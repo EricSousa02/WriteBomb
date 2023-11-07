@@ -4,6 +4,47 @@
 @tailwind components;
 @tailwind utilities;
 
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #F02D65 #1b1b1b;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  @apply w-2;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-neutral-900;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 16px;
+  @apply bg-primary-500 border-2 border-primary-500;
+}
+
+@media (orientation: portrait) {
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #F02D65 #1b1b1b;
+  }
+
+  *::-webkit-scrollbar {
+    display: none; /* Adicionado para esconder a barra de rolagem no Webkit (Chrome, Edge, Safari) */
+    width: 2px;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-neutral-900;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    @apply bg-primary-500 border-2 border-primary-500;
+  }
+}
+
 @layer base {
   * {
     @apply box-border list-none p-0 m-0 scroll-smooth;
@@ -219,7 +260,20 @@
 
   /* Left sidebar */
   .leftsidebar {
-    @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2;
+    @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2 h-screen overflow-auto;
+    
+  }
+
+  .leftsidebar::-webkit-scrollbar {
+    display:none
+  }
+
+  .leftsidebar::-webkit-scrollbar-track {
+    display:none
+  }
+
+  .leftsidebar::-webkit-scrollbar-thumb {
+    display:none
   }
 
   .leftsidebar-link {

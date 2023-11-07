@@ -3,7 +3,6 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { INavLink } from "@/types";
 import { sidebarLinks } from "@/constants";
 import { Loader } from "@/components/shared";
-import { Button } from "@/components/ui/button";
 import { useSignOutAccount } from "@/lib/react-query/queries";
 import { useUserContext, INITIAL_USER } from "@/context/AuthContext";
 
@@ -15,7 +14,7 @@ const LeftSidebar = () => {
   const { mutate: signOut } = useSignOutAccount();
 
   const handleSignOut = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<any, MouseEvent> 
   ) => {
     e.preventDefault();
     signOut();
@@ -27,14 +26,14 @@ const LeftSidebar = () => {
   return (
     <nav className="leftsidebar">
       <div className="flex flex-col gap-11">
-        <Link to="/" className="flex gap-3 items-center">
+        {/* <Link to="/" className="flex gap-3 items-center">
           <img
-            src="/assets/images/logo.svg"
+            src="/assets/images/bomb.svg"
             alt="logo"
-            width={170}
+            width={36}
             height={36}
           />
-        </Link>
+        </Link> */}
 
         {isLoading || !user.email ? (
           <div className="h-14">
@@ -82,13 +81,16 @@ const LeftSidebar = () => {
         </ul>
       </div>
 
-      <Button
-        variant="ghost"
-        className="shad-button_ghost"
+      <div className='mt-12 flex flex-col gap-6 leftsidebar-link group p-4 hover:cursor-pointer'
+      onClick={(e) => handleSignOut(e)}>
+      <NavLink
+        to="#"
+        className="flex gap-4 items-center group-hover:invert-white "
         onClick={(e) => handleSignOut(e)}>
         <img src="/assets/icons/logout.svg" alt="logout" />
         <p className="small-medium lg:base-medium">Logout</p>
-      </Button>
+      </NavLink>
+      </div>
     </nav>
   );
 };
