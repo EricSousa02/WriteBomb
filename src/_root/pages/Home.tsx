@@ -3,9 +3,11 @@ import { Models } from "appwrite";
 // import { useToast } from "@/components/ui/use-toast";
 import { Loader, PostCard, UserCard } from "@/components/shared";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queries";
+import { useUserContext } from "@/context/AuthContext";
 
 const Home = () => {
   // const { toast } = useToast();
+  const { t } = useUserContext();
 
   const {
     data: posts,
@@ -22,10 +24,10 @@ const Home = () => {
     return (
       <div className="flex flex-1">
         <div className="home-container">
-          <p className="body-medium text-light-1">Something bad happened</p>
+          <p className="body-medium text-light-1">{t("Something bad happened")}</p>
         </div>
         <div className="home-creators">
-          <p className="body-medium text-light-1">Something bad happened</p>
+          <p className="body-medium text-light-1">{t("Something bad happened")}</p>
         </div>
       </div>
     );
@@ -35,7 +37,15 @@ const Home = () => {
     <div className="flex flex-1">
       <div className="home-container">
         <div className="home-posts">
-          <h2 className="h3-bold md:h2-bold text-left w-full">Home Feed</h2>
+        <div className="flex gap-2 w-full max-w-5xl">
+          <img
+            src="/assets/icons/home.svg"
+            width={36}
+            height={36}
+            alt="edit"
+          />
+          <h2 className="h3-bold md:h2-bold text-left w-full">{t("Home Feed")}</h2>
+        </div>
           {isPostLoading && !posts ? (
             <Loader />
           ) : (
@@ -51,7 +61,7 @@ const Home = () => {
       </div>
 
       <div className="home-creators">
-        <h3 className="h3-bold text-light-1">Top Creators</h3>
+        <h3 className="h3-bold text-light-1">{t("Top Creators")}</h3>
         {isUserLoading && !creators ? (
           <Loader />
         ) : (

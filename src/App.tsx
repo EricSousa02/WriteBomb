@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import "../src/lib/i18n"
 
 import {
   Home,

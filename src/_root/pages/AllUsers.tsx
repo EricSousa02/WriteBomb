@@ -1,14 +1,17 @@
 import { useToast } from "@/components/ui/use-toast";
 import { Loader, UserCard } from "@/components/shared";
 import { useGetUsers } from "@/lib/react-query/queries";
+import { useUserContext } from "@/context/AuthContext";
 
 const AllUsers = () => {
   const { toast } = useToast();
 
   const { data: creators, isLoading, isError: isErrorCreators } = useGetUsers();
 
+  const { t } = useUserContext();
+
   if (isErrorCreators) {
-    toast({ title: "Something went wrong." });
+    toast({ title: t("Something went wrong.") });
     
     return;
   }
@@ -16,7 +19,15 @@ const AllUsers = () => {
   return (
     <div className="common-container">
       <div className="user-container">
-        <h2 className="h3-bold md:h2-bold text-left w-full">All Users</h2>
+      <div className="flex gap-2 w-full max-w-5xl">
+        <img
+            src="/assets/icons/people.svg"
+            width={36}
+            height={36}
+            alt="edit"
+          />
+          <h2 className="h3-bold md:h2-bold text-left w-full">{t("All Users")}</h2>
+        </div>
         {isLoading && !creators ? (
           <Loader />
         ) : (

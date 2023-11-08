@@ -2,9 +2,11 @@ import { Models } from "appwrite";
 
 import { GridPostList, Loader } from "@/components/shared";
 import { useGetCurrentUser } from "@/lib/react-query/queries";
+import { useUserContext } from "@/context/AuthContext";
 
 const Saved = () => {
   const { data: currentUser } = useGetCurrentUser();
+  const { t } = useUserContext();
 
   const savePosts = currentUser?.save
     .map((savePost: Models.Document) => ({
@@ -23,9 +25,8 @@ const Saved = () => {
           width={36}
           height={36}
           alt="edit"
-          className="invert-white"
         />
-        <h2 className="h3-bold md:h2-bold text-left w-full">Saved Posts</h2>
+        <h2 className="h3-bold md:h2-bold text-left w-full">{t("Saved Posts")}</h2>
       </div>
 
       {!currentUser ? (
@@ -33,7 +34,7 @@ const Saved = () => {
       ) : (
         <ul className="w-full flex justify-center max-w-5xl gap-9">
           {savePosts.length === 0 ? (
-            <p className="text-light-4">No available posts</p>
+            <p className="text-light-4">{t("No available posts")}</p>
           ) : (
             <GridPostList posts={savePosts} showStats={false} />
           )}

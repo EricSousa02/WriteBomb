@@ -15,7 +15,7 @@ import { useUserContext } from "@/context/AuthContext";
 const PostDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { user } = useUserContext();
+  const { user, t } = useUserContext();
 
   const { data: post, isLoading } = useGetPostById(id);
   const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts(
@@ -45,7 +45,7 @@ const PostDetails = () => {
             width={24}
             height={24}
           />
-          <p className="small-medium lg:base-medium">Back</p>
+          <p className="small-medium lg:base-medium">{t("Back")}</p>
         </Button>
       </div>
 
@@ -142,7 +142,7 @@ const PostDetails = () => {
         <hr className="border w-full border-dark-4/80" />
 
         <h3 className="body-bold md:h3-bold w-full my-10">
-          More Related Posts
+          {t("More Related Posts")}
         </h3>
         {isUserPostLoading || !relatedPosts ? (
           <Loader />

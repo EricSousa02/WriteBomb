@@ -7,7 +7,7 @@ import { useSignOutAccount } from "@/lib/react-query/queries";
 
 const Topbar = () => {
   const navigate = useNavigate();
-  const { user } = useUserContext();
+  const { user, handleChangeLanguage } = useUserContext();
   const { mutate: signOut, isSuccess } = useSignOutAccount();
 
   useEffect(() => {
@@ -19,21 +19,27 @@ const Topbar = () => {
       <div className="flex-between py-4 px-5">
         <Link to="/" className="flex gap-3 items-center">
           <img
-            src="/assets/images/logo.svg"
+            src="/assets/icons/home.svg"
             alt="logo"
-            width={130}
-            height={325}
+            width={30}
+            height={30}
           />
         </Link>
 
-        <div className="flex gap-4">
+        <div className="flex gap-1">
+        <Button
+            variant="ghost"
+            className="shad-button_ghost"
+            onClick={handleChangeLanguage}>
+            <img src="/assets/icons/language.svg" alt="logout" />
+          </Button>
           <Button
             variant="ghost"
             className="shad-button_ghost"
             onClick={() => signOut()}>
             <img src="/assets/icons/logout.svg" alt="logout" />
           </Button>
-          <Link to={`/profile/${user.id}`} className="flex-center gap-3">
+          <Link to={`/profile/${user.id}`} className="flex-center gap-3 ml-3">
             <img
               src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
               alt="profile"

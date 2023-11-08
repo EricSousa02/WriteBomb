@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 import { Loader } from "@/components/shared";
 import PostForm from "@/components/forms/PostForm";
 import { useGetPostById } from "@/lib/react-query/queries";
+import { useUserContext } from "@/context/AuthContext";
 
 const EditPost = () => {
   const { id } = useParams();
   const { data: post, isLoading } = useGetPostById(id);
+  const { t } = useUserContext();
 
   if (isLoading)
     return (
@@ -24,9 +26,8 @@ const EditPost = () => {
             width={36}
             height={36}
             alt="edit"
-            className="invert-white"
           />
-          <h2 className="h3-bold md:h2-bold text-left w-full">Edit Post</h2>
+          <h2 className="h3-bold md:h2-bold text-left w-full">{t("Edit Post")}</h2>
         </div>
 
         {isLoading ? <Loader /> : <PostForm action="Update" post={post} />}

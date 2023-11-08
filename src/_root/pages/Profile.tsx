@@ -27,7 +27,7 @@ const StatBlock = ({ value, label }: StabBlockProps) => (
 
 const Profile = () => {
   const { id } = useParams();
-  const { user } = useUserContext();
+  const { user, t } = useUserContext();
   const { pathname } = useLocation();
 
   const { data: currentUser } = useGetUserById(id || "");
@@ -85,13 +85,13 @@ const Profile = () => {
                   height={20}
                 />
                 <p className="flex whitespace-nowrap small-medium">
-                  Edit Profile
+                  {t("Edit Profile")}
                 </p>
               </Link>
             </div>
             <div className={`${user.id === id && "hidden"}`}>
               <Button type="button" className="shad-button_primary px-8">
-                Follow
+                {t("Follow")}
               </Button>
             </div>
           </div>
@@ -111,7 +111,7 @@ const Profile = () => {
               width={20}
               height={20}
             />
-            Posts
+            {t("Posts")}
           </Link>
           <Link
             to={`/profile/${id}/liked-posts`}
@@ -124,7 +124,7 @@ const Profile = () => {
               width={20}
               height={20}
             />
-            Liked Posts
+            {t("Liked Posts")}
           </Link>
         </div>
       )}

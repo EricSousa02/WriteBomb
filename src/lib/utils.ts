@@ -1,3 +1,4 @@
+import { useUserContext } from "@/context/AuthContext";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -27,6 +28,8 @@ export function formatDateString(dateString: string) {
 
 // 
 export const multiFormatDateString = (timestamp: string = ""): string => {
+  const { t } = useUserContext()
+
   const timestampNum = Math.round(new Date(timestamp).getTime() / 1000);
   const date: Date = new Date(timestampNum * 1000);
   const now: Date = new Date();
@@ -41,15 +44,15 @@ export const multiFormatDateString = (timestamp: string = ""): string => {
     case Math.floor(diffInDays) >= 30:
       return formatDateString(timestamp);
     case Math.floor(diffInDays) === 1:
-      return `${Math.floor(diffInDays)} day ago`;
+      return `${Math.floor(diffInDays)} ${t("day ago")}`;
     case Math.floor(diffInDays) > 1 && diffInDays < 30:
-      return `${Math.floor(diffInDays)} days ago`;
+      return `${Math.floor(diffInDays)} ${t("days ago")}`;
     case Math.floor(diffInHours) >= 1:
-      return `${Math.floor(diffInHours)} hours ago`;
+      return `${Math.floor(diffInHours)} ${t("hours ago")}`;
     case Math.floor(diffInMinutes) >= 1:
-      return `${Math.floor(diffInMinutes)} minutes ago`;
+      return `${Math.floor(diffInMinutes)} ${t("minutes ago")}`;
     default:
-      return "Just now";
+      return t("Just now");
   }
 };
 
