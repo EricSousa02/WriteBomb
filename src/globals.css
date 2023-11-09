@@ -198,7 +198,7 @@
   }
 
   .post_details-img {
-    @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px] xl:rounded-l-[24px] xl:rounded-tr-none object-cover p-5 bg-dark-1;
+    @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px] xl:rounded-l-[24px] xl:rounded-tr-none object-fill p-5 bg-dark-1;
   }
 
   .post_details-info {
@@ -286,7 +286,7 @@
   }
 
   .post-card_img {
-    @apply h-64 xs:h-[400px] lg:h-[450px] w-full rounded-[24px] object-cover mb-5;
+    @apply h-64 xs:h-[400px] lg:h-[450px] w-full rounded-[24px] object-fill mb-5;
   }
 
   /* Topbar */

@@ -25,15 +25,18 @@ const LeftSidebar = () => {
 
   return (
     <nav className="leftsidebar">
-      <div className="flex flex-col gap-11">
-        {/* <Link to="/" className="flex gap-3 items-center">
+      <div className="flex flex-col gap-10">
+        <Link to="/" className="flex gap-1 items-center">
           <img
-            src="/assets/images/bomb.svg"
+            src="/assets/images/logo.png"
             alt="logo"
-            width={36}
-            height={36}
+            width={60}
+            height={60}
+            className=""
           />
-        </Link> */}
+
+          <h1 className="font-bold tracking-wider text-xl">Write<span className="text-primary-500">Bomb</span></h1>
+        </Link>
 
         {isLoading || !user.email ? (
           <div className="h-14">
