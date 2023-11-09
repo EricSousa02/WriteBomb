@@ -74,7 +74,7 @@ const SignupForm = () => {
 
   return (
     <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
+      <div className="sm:w-420 flex-center flex-col z-10">
         <img
           src="/assets/images/logo.png"
           alt="logo"
@@ -91,7 +91,7 @@ const SignupForm = () => {
 
         <form
           onSubmit={form.handleSubmit(handleSignup)}
-          className="flex flex-col gap-5 w-full mt-4">
+          className="flex flex-col gap-2 w-full mt-4">
           <FormField
             control={form.control}
             name="name"

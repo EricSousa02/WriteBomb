@@ -53,7 +53,7 @@ const SigninForm = () => {
 
   return (
     <Form {...form}>
-      <div className="sm:w-420 flex-center flex-col">
+      <div className="sm:w-420 flex-center flex-col z-10">
         <img 
         src="/assets/images/logo.png"
         alt="logo"
