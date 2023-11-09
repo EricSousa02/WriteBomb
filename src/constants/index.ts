@@ -45,10 +45,15 @@ export const bottombarLinks = [
     route: "/saved",
     label: "Saved",
   },
+  // {
+  //   imgURL: "/assets/icons/gallery-add.svg",
+  //   route: "/create-post",
+  //   label: "Create",
+  // },
   {
-    imgURL: "/assets/icons/gallery-add.svg",
-    route: "/create-post",
-    label: "Create",
+    imgURL: "/assets/icons/people.svg",
+    route: "/all-users",
+    label: "People",
   },
 ];
 
@@ -98,9 +103,14 @@ export const bottombarLinksPt = [
     route: "/saved",
     label: "Salvos",
   },
+  // {
+  //   imgURL: "/assets/icons/gallery-add.svg",
+  //   route: "/create-post",
+  //   label: "Criar",
+  // },
   {
-    imgURL: "/assets/icons/gallery-add.svg",
-    route: "/create-post",
-    label: "Criar",
+    imgURL: "/assets/icons/people.svg",
+    route: "/all-users",
+    label: "Pessoas",
   },
 ];

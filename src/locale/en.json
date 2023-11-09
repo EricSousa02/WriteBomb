@@ -57,7 +57,8 @@
         "days ago":"days ago",
         "hours ago":"hours ago",
         "minutes ago":"minutes ago",
-        "Just now":"Just now"
+        "Just now":"Just now",
+        "create":"create"
     }
     
 }
