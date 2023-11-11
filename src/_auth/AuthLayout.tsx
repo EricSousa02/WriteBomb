@@ -12,13 +12,14 @@ export default function AuthLayout() {
       ) : (
         <>
           <section className="flex flex-1 justify-center items-center flex-col py-10">
-          <video
-            src="/assets/images/neon.mp4"
-            autoPlay
-            muted
-            loop
-            className="absolute hidden xl:block h-screen w-screen object-cover bg-no-repeat z-0"
-          />
+            <video
+              src="/assets/images/neon.mp4"
+              autoPlay
+              muted
+              loop
+              preload="auto"
+              className="absolute hidden xl:block h-screen w-screen object-cover bg-no-repeat z-0"
+            />
             <Outlet />
           </section>
 
