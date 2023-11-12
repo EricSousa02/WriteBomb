@@ -58,7 +58,13 @@
         "hours ago":"horas atrás",
         "minutes ago":"minutos atrás",
         "Just now":"Agora mesmo",
-        "create":"criar"
+        "create":"criar",
+        "Name must be at least 2 characters.":"O nome deve ter pelo menos 2 caracteres.",
+        "Password must be at least 8 characters.":"A senha deve de ter pelo menos 8 caracteres.",
+        "Minimum 5 characters.":"Mínimo de 5 caracteres.",
+        "Maximum 2,200 caracters":"Máximo de 2.200 caracteres",
+        "This field is required":"Este campo é obrigatório",
+        "Maximum 1000 characters.":"Máximo de 1000 caracteres."
       
     }
 }

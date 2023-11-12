@@ -103,9 +103,8 @@ const PostDetails = () => {
                 <Button
                   onClick={handleDeletePost}
                   variant="ghost"
-                  className={`ost_details-delete_btn ${
-                    user.id !== post?.creator.$id && "hidden"
-                  }`}>
+                  className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
+                    }`}>
                   <img
                     src={"/assets/icons/delete.svg"}
                     alt="delete"
@@ -118,8 +117,9 @@ const PostDetails = () => {
 
             <hr className="border w-full border-dark-4/80" />
 
-            <div className="flex flex-col flex-1 w-full small-medium lg:base-regular">
-              <p>{post?.caption}</p>
+            <div className="flex flex-col flex-1 w-full overflow-auto small-medium lg:base-regular custom-scrollbar">
+              <p className="lg:max-h-[225px] lg:overflow-auto custom-scrollbar">{post?.caption}</p>
+
               <ul className="flex gap-1 mt-2">
                 {post?.tags.map((tag: string, index: string) => (
                   <li
@@ -130,6 +130,7 @@ const PostDetails = () => {
                 ))}
               </ul>
             </div>
+
 
             <div className="w-full">
               <PostStats post={post} userId={user.id} />
