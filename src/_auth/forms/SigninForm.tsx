@@ -91,7 +91,7 @@ const SigninForm = () => {
               <FormItem>
                 <FormLabel className="shad-form_label">{t("Password")}</FormLabel>
                 <FormControl>
-                  <Input type="password" className="shad-input" {...field} />
+                  <Input type="password" className="shad-input" {...field} />                  
                 </FormControl>
                 <FormMessage />
               </FormItem>
