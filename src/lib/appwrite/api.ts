@@ -540,3 +540,43 @@ export async function updateUser(user: IUpdateUser) {
     console.log(error);
   }
 }
+
+// ============================== FOLLOW USER
+export async function followUser(userId: string, followerId: string) {
+  try {
+    // Get information of the user being followed
+    const userToFollow = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId
+    );
+
+    if (!userToFollow) throw Error;
+
+    if (userToFollow.followers.includes(followerId)) {
+      userToFollow.followers = userToFollow.followers.filter((Id: any) => Id !== followerId);
+    } else {
+      userToFollow.followers.push(followerId)
+    }
+
+    // Add the follower's ID to the followers' list
+    const newFollowersList = [...userToFollow.followers];
+
+    // Update the user's document with the new followers' list
+    const updatedUser = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId,
+      {
+        followers: newFollowersList,
+      }
+    );
+
+    if (!updatedUser) throw Error;
+
+    return updatedUser;
+  } catch (error) {
+    console.log(error);
+  }
+}
+

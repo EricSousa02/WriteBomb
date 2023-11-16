@@ -25,6 +25,7 @@ import {
   searchPosts,
   savePost,
   deleteSavedPost,
+  followUser,
 } from "@/lib/appwrite/api";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 
@@ -244,3 +245,21 @@ export const useUpdateUser = () => {
     },
   });
 };
+
+export const useFollowUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ userId, followerId }: { userId: string; followerId: string }) =>
+      followUser(userId, followerId),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+      });
+    },
+  });
+};
+
+

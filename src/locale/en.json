@@ -64,7 +64,11 @@
         "Minimum 5 characters.":"Minimum 5 characters.",
         "Maximum 2,200 caracters":"Maximum 2,200 caracters",
         "This field is required":"This field is required",
-        "Maximum 1000 characters.":"Maximum 1000 characters."
+        "Maximum 1000 characters.":"Maximum 1000 characters.",
+        "Following":"Following",
+        "Followers":"Followers",
+        "Follower":"Follower",
+        "Your profile":"Your profile"
     }
     
 }

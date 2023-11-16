@@ -64,7 +64,11 @@
         "Minimum 5 characters.":"Mínimo de 5 caracteres.",
         "Maximum 2,200 caracters":"Máximo de 2.200 caracteres",
         "This field is required":"Este campo é obrigatório",
-        "Maximum 1000 characters.":"Máximo de 1000 caracteres."
+        "Maximum 1000 characters.":"Máximo de 1000 caracteres.",
+        "Following":"Seguindo",
+        "Followers":"Seguidores",
+        "Follower":"Seguidor",
+        "Your profile":"Seu perfil"
       
     }
 }

@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 
 import { Button } from "../ui/button";
 import { useUserContext } from "@/context/AuthContext";
+import { useGetUserById } from "@/lib/react-query/queries";
 
 type UserCardProps = {
   user: Models.Document;
 };
 
 const UserCard = ({ user }: UserCardProps) => {
+  const { user: actualUser, t } = useUserContext();
 
-  const { t } = useUserContext()
+  const { data: currentUser } = useGetUserById(user.$id || "");
+
+  // Verificar se currentUser é definido antes de acessar suas propriedades
+  const isFollowing = currentUser?.followers?.includes(actualUser.id);
 
   return (
     <Link to={`/profile/${user.$id}`} className="user-card">
@@ -29,9 +34,14 @@ const UserCard = ({ user }: UserCardProps) => {
         </p>
       </div>
 
+      {user.$id === actualUser.id ?
       <Button type="button" size="sm" className="shad-button_primary px-5">
-        {t("Follow")}
+        {t("Your profile")}
       </Button>
+        :
+      <Button type="button" size="sm" className="shad-button_primary px-5">
+        {isFollowing ? t("Following") : t("Follow")}
+      </Button>}
     </Link>
   );
 };
