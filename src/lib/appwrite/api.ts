@@ -445,6 +445,8 @@ export async function getRecentPosts() {
 
 // ============================== GET USERS
 export async function getUsers(limit?: number) {
+  console.log("Limit:", limit); // Adicione esta linha para verificar o valor de limit
+
   const queries: any[] = [Query.orderDesc("$createdAt")];
 
   if (limit) {
@@ -465,6 +467,7 @@ export async function getUsers(limit?: number) {
     console.log(error);
   }
 }
+
 
 // ============================== GET USER BY ID
 export async function getUserById(userId: string) {

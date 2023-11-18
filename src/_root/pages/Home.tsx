@@ -50,9 +50,13 @@ const Home = () => {
 
           </div>
 
-          <div className=" gap-2 w-full">
+          {isUserLoading && !creators ? (
+          <></>
+        ) : (
+
             <Slider />
-          </div>
+    
+        )}
 
 
           {isPostLoading && !posts ? (
