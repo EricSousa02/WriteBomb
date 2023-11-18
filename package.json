@@ -24,6 +24,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
+    "framer-motion": "^10.16.5",
     "i18next": "^23.6.0",
     "lucide-react": "^0.279.0",
     "prettier": "^3.0.3",

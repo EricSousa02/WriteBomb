@@ -4,6 +4,7 @@ import { Models } from "appwrite";
 import { Loader, PostCard, UserCard } from "@/components/shared";
 import { useGetRecentPosts, useGetUsers } from "@/lib/react-query/queries";
 import { useUserContext } from "@/context/AuthContext";
+import Slider from "@/components/shared/Slider";
 
 const Home = () => {
   // const { toast } = useToast();
@@ -37,15 +38,23 @@ const Home = () => {
     <div className="flex flex-1">
       <div className="home-container">
         <div className="home-posts">
-        <div className="flex gap-2 w-full max-w-5xl">
-          <img
-            src="/assets/icons/home.svg"
-            width={36}
-            height={36}
-            alt="edit"
-          />
-          <h2 className="h3-bold md:h2-bold text-left w-full">{t("Home Feed")}</h2>
-        </div>
+  
+          <div className="flex gap-2 w-full max-w-5xl">
+            <img
+              src="/assets/icons/home.svg"
+              width={36}
+              height={36}
+              alt="edit"
+            />
+            <h2 className="h3-bold md:h2-bold text-left w-full">{t("Home Feed")}</h2>
+
+          </div>
+
+          <div className=" gap-2 w-full">
+            <Slider />
+          </div>
+
+
           {isPostLoading && !posts ? (
             <Loader />
           ) : (
