@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect, useEffect } from "react";
 import { useGetUsers } from "@/lib/react-query/queries";
 import { Link } from "react-router-dom";
 
@@ -22,6 +22,11 @@ const Slider = () => {
         return () => {
             window.removeEventListener("resize", updateWidth);
         };
+    }, []);
+
+    // useEffect para resetar o useRef quando a página for carregada novamente
+    useEffect(() => {
+        carousel.current = null;
     }, []);
 
     const { data: creators } = useGetUsers(6);
@@ -57,7 +62,7 @@ const Slider = () => {
                                 />
                             </Link>
                         </div>
-                        <p className="md:text-[10px] text-[7px] mt-1">
+                        <p className="md:text-[10px] text-[9px] mt-1 truncate max-w-12">
                             {creator.name.split(" ")[0]}
                         </p>
                     </motion.div>
