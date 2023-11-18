@@ -74,7 +74,7 @@ const Explore = () => {
           />
           <Input
             type="text"
-            placeholder="Search"
+            placeholder={t("Search")}
             className="explore-search"
             value={searchValue}
             onChange={(e) => {

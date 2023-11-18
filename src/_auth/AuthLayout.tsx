@@ -18,8 +18,9 @@ export default function AuthLayout() {
               muted
               loop
               preload="auto"
-              className="absolute hidden xl:block h-screen w-screen object-cover bg-no-repeat z-0"
+              className="absolute h-full w-full object-cover bg-no-repeat z-0"
             />
+
             <Outlet />
           </section>
 

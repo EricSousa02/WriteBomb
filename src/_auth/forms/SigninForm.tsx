@@ -61,15 +61,15 @@ const SigninForm = () => {
         width="70" 
         />
 
-        <h2 className="h3-bold md:h2-bold ">
+        <h2 className="h3-bold md:h2-bold px-3">
           {t("Log in to your account")}
         </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
+        <p className="text-light-3 small-medium md:base-regular mt-2 px-3">
           {t("Welcome back! Please enter your details")}
         </p>
         <form
           onSubmit={form.handleSubmit(handleSignin)}
-          className="flex flex-col gap-5 w-full mt-4">
+          className="flex flex-col gap-5 w-full mt-4 px-3">
           <FormField
             control={form.control}
             name="email"

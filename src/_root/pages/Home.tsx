@@ -53,9 +53,7 @@ const Home = () => {
           {isUserLoading && !creators ? (
           <></>
         ) : (
-
             <Slider />
-    
         )}
 
 

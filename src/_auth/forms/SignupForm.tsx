@@ -82,16 +82,16 @@ const SignupForm = () => {
           width="70"
         />
 
-        <h2 className="h3-bold md:h2-bold">
+        <h2 className="h3-bold md:h2-bold px-3">
           {t("Create a new account")}
         </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
+        <p className="text-light-3 small-medium md:base-regular mt-2 px-3">
           {t("To use writebomb, Please enter your details")}
         </p>
 
         <form
           onSubmit={form.handleSubmit(handleSignup)}
-          className="flex flex-col gap-2 w-full mt-4">
+          className="flex flex-col gap-2 w-full mt-4 px-3 pb-4">
           <FormField
             control={form.control}
             name="name"
