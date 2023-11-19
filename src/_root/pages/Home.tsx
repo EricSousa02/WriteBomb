@@ -53,7 +53,9 @@ const Home = () => {
           {isUserLoading && !creators ? (
           <></>
         ) : (
+          <div className="flex w-full max-w-5xl">
             <Slider />
+          </div>
         )}
 
 
