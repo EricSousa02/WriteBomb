@@ -8,9 +8,10 @@ import { useUserContext } from "@/context/AuthContext";
 type FileUploaderProps = {
   fieldChange: (files: File[]) => void;
   mediaUrl: string;
+  id:string
 };
 
-const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
+const FileUploader = ({ fieldChange, mediaUrl, ...props }: FileUploaderProps) => {
   const [file, setFile] = useState<File[]>([]);
   const [fileUrl, setFileUrl] = useState<string>(mediaUrl);
   const { t } = useUserContext();
@@ -35,7 +36,7 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
     <div
       {...getRootProps()}
       className="flex flex-center flex-col bg-dark-3 rounded-xl cursor-pointer">
-      <input {...getInputProps()} className="cursor-pointer" />
+      <input {...getInputProps()} className="cursor-pointer" {...props} />
 
       {fileUrl ? (
         <>

@@ -18,7 +18,7 @@ export default function AuthLayout() {
               muted
               loop
               preload="auto"
-              className="absolute h-full w-full object-cover bg-no-repeat z-0"
+              className="hidden lg:block absolute h-full w-full object-cover bg-no-repeat z-0"
             />
 
             <Outlet />

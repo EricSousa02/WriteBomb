@@ -1,4 +1,4 @@
-import { useUserContext } from "@/context/AuthContext";
+
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -27,9 +27,7 @@ export function formatDateString(dateString: string) {
 }
 
 // 
-export const multiFormatDateString = (timestamp: string = ""): string => {
-  const { t } = useUserContext()
-
+export const multiFormatDateString = (timestamp: string = "", t: Function): string => {
   const timestampNum = Math.round(new Date(timestamp).getTime() / 1000);
   const date: Date = new Date(timestampNum * 1000);
   const now: Date = new Date();

@@ -38,6 +38,8 @@ const Home = () => {
     <div className="flex flex-1">
       <div className="home-container">
         <div className="home-posts">
+
+
   
           <div className="flex gap-2 w-full max-w-5xl">
             <img

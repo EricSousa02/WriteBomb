@@ -1,9 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-
 import { Button } from "@/components/ui";
 import { Loader } from "@/components/shared";
 import { GridPostList, PostStats } from "@/components/shared";
-
 import {
   useGetPostById,
   useGetUserPosts,
@@ -13,8 +11,8 @@ import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
 
 const PostDetails = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
+  const navigate = useNavigate();
   const { user, t } = useUserContext();
 
   const { data: post, isLoading } = useGetPostById(id);
@@ -38,7 +36,8 @@ const PostDetails = () => {
         <Button
           onClick={() => navigate(-1)}
           variant="ghost"
-          className="shad-button_ghost">
+          className="shad-button_ghost"
+        >
           <img
             src={"/assets/icons/back.svg"}
             alt="back"
@@ -63,7 +62,8 @@ const PostDetails = () => {
             <div className="flex-between w-full">
               <Link
                 to={`/profile/${post?.creator.$id}`}
-                className="flex items-center gap-3">
+                className="flex items-center gap-3"
+              >
                 <img
                   src={
                     post?.creator.imageUrl ||
@@ -78,7 +78,7 @@ const PostDetails = () => {
                   </p>
                   <div className="flex-center gap-2 text-light-3">
                     <p className="subtle-semibold lg:small-regular ">
-                      {multiFormatDateString(post?.$createdAt)}
+                      {multiFormatDateString(post?.createdAt, t)}
                     </p>
                     •
                     <p className="subtle-semibold lg:small-regular truncate">
@@ -91,7 +91,8 @@ const PostDetails = () => {
               <div className="flex-center gap-4">
                 <Link
                   to={`/update-post/${post?.$id}`}
-                  className={`${user.id !== post?.creator.$id && "hidden"}`}>
+                  className={`${user.id !== post?.creator.$id && "hidden"}`}
+                >
                   <img
                     src={"/assets/icons/edit.svg"}
                     alt="edit"
@@ -103,8 +104,10 @@ const PostDetails = () => {
                 <Button
                   onClick={handleDeletePost}
                   variant="ghost"
-                  className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
-                    }`}>
+                  className={`ost_details-delete_btn ${
+                    user.id !== post?.creator.$id && "hidden"
+                  }`}
+                >
                   <img
                     src={"/assets/icons/delete.svg"}
                     alt="delete"
@@ -118,19 +121,21 @@ const PostDetails = () => {
             <hr className="border w-full border-dark-4/80" />
 
             <div className="flex flex-col flex-1 w-full overflow-auto small-medium lg:base-regular custom-scrollbar">
-              <p className="lg:max-h-[225px] lg:overflow-auto custom-scrollbar">{post?.caption}</p>
+              <p className="lg:max-h-[225px] lg:overflow-auto custom-scrollbar">
+                {post?.caption}
+              </p>
 
               <ul className="flex gap-1 mt-2">
                 {post?.tags.map((tag: string, index: string) => (
                   <li
                     key={`${tag}${index}`}
-                    className="text-light-3 small-regular">
+                    className="text-light-3 small-regular"
+                  >
                     #{tag}
                   </li>
                 ))}
               </ul>
             </div>
-
 
             <div className="w-full">
               <PostStats post={post} userId={user.id} />

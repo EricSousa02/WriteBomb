@@ -89,10 +89,11 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="caption"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">{t("Caption")}</FormLabel>
+              <FormLabel className="shad-form_label" htmlFor={"Textarea"}>{t("Caption")}</FormLabel>
               <FormControl>
                 <Textarea
                   className="shad-textarea custom-scrollbar"
+                  id={"Textarea"}
                   {...field}
                 />
               </FormControl>
@@ -106,11 +107,12 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="file"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">{t("Add Photos")}</FormLabel>
+              <FormLabel className="shad-form_label" htmlFor={"file"}>{t("Add Photos")}</FormLabel>
               <FormControl>
                 <FileUploader
                   fieldChange={field.onChange}
                   mediaUrl={post?.imageUrl}
+                  id="file"
                 />
               </FormControl>
               <FormMessage className="shad-form_message" />
@@ -123,9 +125,9 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="location"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">{t("Add Location")}</FormLabel>
+              <FormLabel className="shad-form_label" htmlFor={"location"}>{t("Add Location")}</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" {...field} />
+                <Input type="text" id={"location"} className="shad-input" maxLength={15} {...field} />
               </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
@@ -137,7 +139,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label">
+              <FormLabel className="shad-form_label" htmlFor={"tags"}>
                 {t("Add Tags (separated by comma ' , ')")}
               </FormLabel>
               <FormControl>
@@ -145,6 +147,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                   placeholder={t("Art, Expression, Learn")}
                   type="text"
                   className="shad-input"
+                  id={"tags"}
                   {...field}
                 />
               </FormControl>
