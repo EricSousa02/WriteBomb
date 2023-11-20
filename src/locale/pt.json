@@ -69,7 +69,10 @@
         "Followers":"Seguidores",
         "Follower":"Seguidor",
         "Your profile":"Seu perfil",
-        "Search":"Pesquisar"
+        "Search":"Pesquisar",
+        "Latest":"Ultimos",
+        "Desc":"Invertido",
+        "Default":"Padrão"
       
     }
 }

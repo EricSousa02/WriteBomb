@@ -4,11 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 * {
   scrollbar-width: auto;
-  scrollbar-color: #F02D65 #1b1b1b;
+  scrollbar-color: #f02d65 #1b1b1b;
 }
 
 /* Chrome, Edge, and Safari */
@@ -28,7 +26,7 @@
 @media (orientation: portrait) {
   * {
     scrollbar-width: auto;
-    scrollbar-color: #F02D65 #1b1b1b;
+    scrollbar-color: #f02d65 #1b1b1b;
   }
 
   *::-webkit-scrollbar {
@@ -44,6 +42,17 @@
     border-radius: 16px;
     @apply bg-primary-500 border-2 border-primary-500;
   }
+}
+
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('../public/assets/icons/filter.svg') 96% / 15% no-repeat #101012;
+}
+
+.select option:hover{
+  @apply text-light-2 bg-dark-3 cursor-pointer
 }
 
 @layer base {
@@ -262,19 +271,18 @@
   /* Left sidebar */
   .leftsidebar {
     @apply hidden md:flex px-6 py-10 flex-col justify-between min-w-[270px] bg-dark-2 h-screen overflow-auto;
-    
   }
 
   .leftsidebar::-webkit-scrollbar {
-    display:none
+    display: none;
   }
 
   .leftsidebar::-webkit-scrollbar-track {
-    display:none
+    display: none;
   }
 
   .leftsidebar::-webkit-scrollbar-thumb {
-    display:none
+    display: none;
   }
 
   .leftsidebar-link {
