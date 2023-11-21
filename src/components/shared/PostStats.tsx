@@ -1,6 +1,6 @@
 import { Models } from "appwrite";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { checkIsLiked } from "@/lib/utils";
 import {
@@ -91,15 +91,24 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         <p className="small-medium lg:base-medium">{likes.length}</p>
       </div>
 
-      <div className="flex gap-2">
-        {isSavingPost || isDeletingPost ? <Loader /> : <img
-          src={isSaved ? "/assets/icons/saved.svg" : "/assets/icons/save.svg"}
-          alt="share"
-          width={20}
-          height={20}
-          className="cursor-pointer"
-          onClick={(e) => handleSavePost(e)}
-        />
+      <div className="flex gap-7">
+        {isSavingPost || isDeletingPost ? <Loader /> : <>
+          <img
+            src={isSaved ? "/assets/icons/saved.svg" : "/assets/icons/save.svg"}
+            alt="share"
+            width={20}
+            height={20}
+            className="cursor-pointer"
+            onClick={(e) => handleSavePost(e)} />
+
+          <Link to={`/comments/${post.$id}`}>
+            <img
+              src={"/assets/icons/chat.svg"}
+              alt="share"
+              width={20}
+              height={20}
+              className="cursor-pointer"/>
+          </Link></>
         }
       </div>
     </div>

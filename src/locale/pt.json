@@ -72,7 +72,10 @@
         "Search":"Pesquisar",
         "Latest":"Ultimos",
         "Desc":"Invertido",
-        "Default":"Padrão"
+        "Default":"Padrão",
+        "Comments":"Comentários",
+        "Add comment":"Adicionar comentário",
+        "Create Comment":"Criar Comentário"
       
     }
 }

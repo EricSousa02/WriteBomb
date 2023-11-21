@@ -72,7 +72,10 @@
         "Search":"Search",
         "Latest":"Latest",
         "Desc":"inverted",
-        "Default":"Default"
+        "Default":"Default",
+        "Comments":"Comments",
+        "Add comment":"Add comment",
+        "Create Comment":"Create Comment"
     }
     
 }
