@@ -80,7 +80,7 @@ const Comments = () => {
         message: value.message,
       };
       form.reset();
-      form.setValue("message", post.message);
+      form.setValue("message", '');
       addComment(commentData);
     }
   };
