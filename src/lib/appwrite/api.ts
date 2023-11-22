@@ -583,3 +583,44 @@ export async function followUser(userId: string, followerId: string) {
   }
 }
 
+
+
+// ============================== ADD COMMENT
+export async function addComment(userId: string, postId: string, message: string) {
+  try {
+    const newComment = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.commentsCollectionId,
+      ID.unique(),
+      {
+        users: userId,
+        posts: postId,
+        message: message,
+      }
+    );
+
+    if (!newComment) throw Error;
+
+    return newComment;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// ============================== DELETE COMMENT
+export async function deleteComment(commentId: string) {
+  try {
+    const statusCode = await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.commentsCollectionId,
+      commentId
+    );
+
+    if (!statusCode) throw Error;
+
+    return { status: "Ok" };
+  } catch (error) {
+    console.log(error);
+  }
+}
+

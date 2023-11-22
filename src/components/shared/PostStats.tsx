@@ -14,13 +14,16 @@ import { Loader } from ".";
 type PostStatsProps = {
   post: Models.Document;
   userId: string;
+  commentsLength?: number
 };
 
-const PostStats = ({ post, userId }: PostStatsProps) => {
+const PostStats = ({ post, userId, commentsLength }: PostStatsProps) => {
   const location = useLocation();
   const likesList = post.likes.map((user: Models.Document) => user.$id);
+  const commentsList = post.comments.map((user: Models.Document) => user.$id);
 
   const [likes, setLikes] = useState<string[]>(likesList);
+  const [comments] = useState<string[]>(commentsList);
   const [isSaved, setIsSaved] = useState(false);
 
   const { mutate: likePost } = useLikePost();
@@ -89,6 +92,20 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         />
 
         <p className="small-medium lg:base-medium">{likes.length}</p>
+
+        <div className="flex gap-2 mx-2">
+          <Link to={`/comments/${post.$id}`}>
+            <img
+              src={"/assets/icons/chat.svg"}
+              alt="share"
+              width={20}
+              height={20}
+              className="cursor-pointer" />
+          </Link>
+
+          <p className="small-medium lg:base-medium">{commentsLength ? commentsLength : comments.length}</p>
+        </div>
+
       </div>
 
       <div className="flex gap-7">
@@ -101,15 +118,9 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
             className="cursor-pointer"
             onClick={(e) => handleSavePost(e)} />
 
-          <Link to={`/comments/${post.$id}`}>
-            <img
-              src={"/assets/icons/chat.svg"}
-              alt="share"
-              width={20}
-              height={20}
-              className="cursor-pointer"/>
-          </Link></>
+        </>
         }
+
       </div>
     </div>
   );

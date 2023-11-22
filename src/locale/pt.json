@@ -75,7 +75,9 @@
         "Default":"Padrão",
         "Comments":"Comentários",
         "Add comment":"Adicionar comentário",
-        "Create Comment":"Criar Comentário"
+        "Create Comment":"Criar Comentário",
+        "Loading":"Carregando",
+        "No comments yet.":"Nenhum comentário ainda."
       
     }
 }

@@ -75,7 +75,9 @@
         "Default":"Default",
         "Comments":"Comments",
         "Add comment":"Add comment",
-        "Create Comment":"Create Comment"
+        "Create Comment":"Create Comment",
+        "Loading":"Loading",
+        "No comments yet.":"No comments yet."
     }
     
 }

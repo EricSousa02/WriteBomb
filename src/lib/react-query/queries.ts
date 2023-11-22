@@ -26,6 +26,8 @@ import {
   savePost,
   deleteSavedPost,
   followUser,
+  addComment,
+  deleteComment,
 } from "@/lib/appwrite/api";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 
@@ -255,6 +257,48 @@ export const useFollowUser = () => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_USER_BY_ID, data?.$id],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+      });
+    },
+  });
+};
+
+// ============================================================
+// COMMENT QUERIES
+// ============================================================
+
+
+export const useAddComment = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ userId, postId, message }: { userId: string; postId: string; message: string }) =>
+      addComment(userId, postId, message),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_POSTS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_CURRENT_USER],
+      });
+    },
+  });
+};
+
+export const useDeleteComment = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (commentId: string) => deleteComment(commentId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_POSTS],
       });
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_CURRENT_USER],
