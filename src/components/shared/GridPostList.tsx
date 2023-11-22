@@ -40,7 +40,9 @@ const GridPostList = ({
                   alt="creator"
                   className="w-8 h-8 rounded-full"
                 />
-                <p className="line-clamp-1 truncate">{post.creator.name}</p>
+                <p className="truncate w-20">
+                  {post.creator.name.split(' ')[0]}
+                </p>
               </div>
             )}
             {showStats && <PostStats post={post} userId={user.id} />}
