@@ -50,8 +50,8 @@ const LeftSidebar = () => {
               className="h-14 w-14 rounded-full"
             />
             <div className="flex flex-col">
-              <p className="body-bold">{user.name}</p>
-              <p className="small-regular text-light-3">@{user.username}</p>
+              <p className="body-bold truncate w-[150px]">{user.name}</p>
+              <p className="small-regular text-light-3 truncate">@{user.username}</p>
             </div>
           </Link>
         )}

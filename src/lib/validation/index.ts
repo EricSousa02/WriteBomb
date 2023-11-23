@@ -16,7 +16,7 @@ export const SigninValidation = z.object({
 });
 
 export const ProfileValidation = z.object({
-  file: z.custom<File[]>().refine(val => val.length > 0, "Imagem é obrigatório"),
+  file: z.custom<File[]>(),
   name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
   username: z.string().min(2, { message: "O nome de usuário deve ter pelo menos 2 caracteres." }),
   email: z.string().email({ message: "Email inválido." }),

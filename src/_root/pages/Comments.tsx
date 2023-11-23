@@ -270,7 +270,7 @@ const Comments = () => {
                     <div
                       key={index}
                       className={`flex flex-col min-w-[200px]  ${user.id === comment?.users?.$id ? "bg-dark-5" : "bg-dark-4"
-                        } rounded-lg px-2 pt-2`}
+                        } rounded-lg px-4 pt-2`}
                     >
                       <div className="flex justify-between items-center mb-3">
                         {comment?.users && (
@@ -282,8 +282,8 @@ const Comments = () => {
                                 className="w-10 h-10 rounded-full mr-2"
                               />
                             </Link>
-                            <div className="flex flex-col">
-                              <span className="text-white font-bold break-all lg:text-base text-sm">
+                            <div className="flex flex-col truncate">
+                              <span className="text-white font-bold break-all lg:text-base lg:max-w-[30vw] max-w-[30vw] text-sm truncate">
                                 {comment.users.name}
                               </span>
                               <span className="text-gray-400 text-xs">@{comment.users.username}</span>
