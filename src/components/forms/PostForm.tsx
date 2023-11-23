@@ -48,6 +48,16 @@ const PostForm = ({ post, action }: PostFormProps) => {
 
   // Handler
   const handleSubmit = async (value: z.infer<typeof PostValidation>) => {
+
+    if (!value.file || value.file.length === 0) {
+      // Exibe um toast informando que o campo é obrigatório
+      toast({
+        title: `${t("Image field is required")}`,
+      });
+      return;
+    }
+
+
     // ACTION = UPDATE
     if (post && action === "Update") {
       const updatedPost = await updatePost({
@@ -59,7 +69,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
 
       if (!updatedPost) {
         toast({
-          title: `${action} ${t("post failed. Please try again.")}`,
+          title: `${t("post failed. Please try again.")}`,
         });
       }
       return navigate(`/posts/${post.$id}`);

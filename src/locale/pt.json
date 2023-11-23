@@ -45,7 +45,7 @@
         "Change language":"Mudar idioma",
         "Click or drag photo to replace":"Clique ou arraste a fotografia para a substituir",
         "Select from computer":"Selecionar imagem",
-        "post failed. Please try again.":"A publicação falhou. Por favor, tente novamente.",
+        "post failed. Please try again.":"A Criação da publicação falhou. Por favor, tente novamente.",
         "Caption":"Legenda",
         "Add Photos":"Adicionar fotos",
         "Add Location":"Adicionar localização",
@@ -79,7 +79,8 @@
         "Create Comment":"Criar Comentário",
         "Loading":"Carregando",
         "No comments yet.":"Nenhum comentário ainda.",
-        "No Related Posts":"Nenhuma publicação relacionada"
+        "No Related Posts":"Nenhuma publicação relacionada",
+        "Image field is required":"Campo de imagem é obrigatório"
       
     }
 }

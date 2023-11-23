@@ -28,7 +28,7 @@ export const ProfileValidation = z.object({
 // ============================================================
 export const PostValidation = z.object({
   caption: z.string().min(5, { message: "Mínimo de 5 caracteres." }).max(2200, { message: "Máximo de 2.200 caracteres" }),
-  file: z.custom<File[]>(),
+  file: z.custom<File[]>().refine(val => val.length > 0, "Imagem é obrigatório"),
   location: z.string().min(1, { message: "Este campo é obrigatório" }).max(1000, { message: "Máximo de 1000 caracteres." }),
   tags: z.string(),
 });

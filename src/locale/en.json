@@ -45,7 +45,7 @@
         "Change language":"Change language",
         "Click or drag photo to replace":"Click or drag photo to replace",
         "Select from computer":"Select image",
-        "post failed. Please try again.":"post failed. Please try again.",
+        "post failed. Please try again.":"Create post failed. Please try again.",
         "Caption":"Caption",
         "Add Photos":"Add Photos",
         "Add Location":"Add Location",
@@ -79,7 +79,8 @@
         "Create Comment":"Create Comment",
         "Loading":"Loading",
         "No comments yet.":"No comments yet.",
-        "No Related Posts":"No Related Posts"
+        "No Related Posts":"No Related Posts",
+        "Image field is required":"Image field is required"
     }
     
 }
