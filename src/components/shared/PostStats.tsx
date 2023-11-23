@@ -78,7 +78,7 @@ const PostStats = ({ post, userId, commentsLength }: PostStatsProps) => {
   return (
     <div
       className={`flex justify-between items-center z-20 ${containerStyles}`}>
-      <div className="flex gap-2 mr-5">
+      <div className="flex gap-2 mr-3">
         <img
           src={`${checkIsLiked(likes, userId)
             ? "/assets/icons/liked.svg"
