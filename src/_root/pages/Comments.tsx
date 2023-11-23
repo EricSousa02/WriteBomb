@@ -91,7 +91,7 @@ const Comments = () => {
           postId: post.$id,
           userId: user.id,
           message: value.message,
-          users: { $id: user.id, name: user.name, username:user.username, imageUrl: user.imageUrl },
+          users: { $id: user.id, name: user.name, username: user.username, imageUrl: user.imageUrl },
         },
       ]);
 

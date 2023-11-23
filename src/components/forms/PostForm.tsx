@@ -15,7 +15,7 @@ import {
   Input,
   Textarea,
 } from "@/components/ui";
-import { PostValidation } from "@/lib/validation";
+import { PostValidation, UpdatePostValidation } from "@/lib/validation";
 import { useToast } from "@/components/ui/use-toast";
 import { useUserContext } from "@/context/AuthContext";
 import { FileUploader, Loader } from "@/components/shared";
@@ -31,7 +31,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
   const { toast } = useToast();
   const { user, t } = useUserContext();
   const form = useForm<z.infer<typeof PostValidation>>({
-    resolver: zodResolver(PostValidation),
+    resolver: zodResolver(action === "Update" ? UpdatePostValidation : PostValidation),
     defaultValues: {
       caption: post ? post?.caption : "",
       file: [],
@@ -48,14 +48,6 @@ const PostForm = ({ post, action }: PostFormProps) => {
 
   // Handler
   const handleSubmit = async (value: z.infer<typeof PostValidation>) => {
-
-    if (!value.file || value.file.length === 0) {
-      // Exibe um toast informando que o campo é obrigatório
-      toast({
-        title: `${t("Image field is required")}`,
-      });
-      return;
-    }
 
 
     // ACTION = UPDATE
@@ -83,7 +75,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
 
     if (!newPost) {
       toast({
-        title: `${action} ${t("post failed. Please try again.")}`,
+        title: `${t("post failed. Please try again.")}`,
       });
     }
     navigate("/");
@@ -178,7 +170,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
             className="shad-button_primary whitespace-nowrap lg:text-base text-xs"
             disabled={isLoadingCreate || isLoadingUpdate}>
             {(isLoadingCreate || isLoadingUpdate) && <Loader />}
-            {t("Create Post")}
+            {action === "Create" ? t("Create Post") : t("Update Post")}
           </Button>
         </div>
       </form>

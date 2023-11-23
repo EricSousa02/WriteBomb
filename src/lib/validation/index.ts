@@ -33,6 +33,13 @@ export const PostValidation = z.object({
   tags: z.string(),
 });
 
+export const UpdatePostValidation = z.object({
+  caption: z.string().min(5, { message: "Mínimo de 5 caracteres." }).max(2200, { message: "Máximo de 2.200 caracteres" }),
+  file: z.custom<File[]>(),
+  location: z.string().min(1, { message: "Este campo é obrigatório" }).max(1000, { message: "Máximo de 1000 caracteres." }),
+  tags: z.string(),
+});
+
 export const CommentValidation = z.object({
   message: z.string().min(5, { message: "Mínimo de 5 caracteres." }).max(2200, { message: "Máximo de 2.200 caracteres" })
 })
