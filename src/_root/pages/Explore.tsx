@@ -53,7 +53,6 @@ const Explore = () => {
   let allPosts: any[] = [];
 
   posts.pages.forEach((item) => {
-    // Adicione os documentos da página ao array allPosts
     allPosts = [...allPosts, ...item.documents];
   });
 

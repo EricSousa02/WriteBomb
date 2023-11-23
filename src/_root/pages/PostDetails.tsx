@@ -104,9 +104,8 @@ const PostDetails = () => {
                 <Button
                   onClick={handleDeletePost}
                   variant="ghost"
-                  className={`ost_details-delete_btn ${
-                    user.id !== post?.creator.$id && "hidden"
-                  }`}
+                  className={`ost_details-delete_btn ${user.id !== post?.creator.$id && "hidden"
+                    }`}
                 >
                   <img
                     src={"/assets/icons/delete.svg"}
@@ -148,8 +147,11 @@ const PostDetails = () => {
         <hr className="border w-full border-dark-4/80" />
 
         <h3 className="body-bold md:h3-bold w-full my-10">
-          {t("More Related Posts")}
+          {relatedPosts && relatedPosts.length <= 0
+            ? t("No Related Posts")
+            : t("More Related Posts")}
         </h3>
+
         {isUserPostLoading || !relatedPosts ? (
           <Loader />
         ) : (
