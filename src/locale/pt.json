@@ -60,6 +60,7 @@
         "Just now":"Agora mesmo",
         "create":"criar",
         "Name must be at least 2 characters.":"O nome deve ter pelo menos 2 caracteres.",
+        "Username must be at least 2 characters.":"O nome de usuário deve ter pelo menos 2 caracteres.",
         "Password must be at least 8 characters.":"A senha deve de ter pelo menos 8 caracteres.",
         "Minimum 5 characters.":"Mínimo de 5 caracteres.",
         "Maximum 2,200 caracters":"Máximo de 2.200 caracteres",

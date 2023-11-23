@@ -39,7 +39,7 @@ const SignupForm = () => {
 
       if (!newUser) {
         toast({ title: t("Sign up failed. Please try again."), });
-        
+
         return;
       }
 
@@ -50,9 +50,9 @@ const SignupForm = () => {
 
       if (!session) {
         toast({ title: t("Something went wrong. Please login your new account"), });
-        
+
         navigate("/sign-in");
-        
+
         return;
       }
 
@@ -64,7 +64,7 @@ const SignupForm = () => {
         navigate("/");
       } else {
         toast({ title: t("Login failed. Please try again."), });
-        
+
         return;
       }
     } catch (error) {
@@ -97,11 +97,16 @@ const SignupForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">{t("Name")}</FormLabel>
+                {form.formState.errors.name && (
+                  <FormMessage>{form.formState.errors.name.message}</FormMessage>
+                )}
+                {!form.formState.errors.name && (
+                  <FormLabel className="shad-form_label">{t("Name")}</FormLabel>
+                )}
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
+
               </FormItem>
             )}
           />
@@ -111,11 +116,15 @@ const SignupForm = () => {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">{t("Username")}</FormLabel>
+                {form.formState.errors.username && (
+                  <FormMessage>{form.formState.errors.username.message}</FormMessage>
+                )}
+                {!form.formState.errors.username && (
+                  <FormLabel className="shad-form_label">{t("Username")}</FormLabel>
+                )}
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
@@ -125,11 +134,15 @@ const SignupForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">Email</FormLabel>
+                {form.formState.errors.email && (
+                  <FormMessage>{form.formState.errors.email.message}</FormMessage>
+                )}
+                {!form.formState.errors.email && (
+                  <FormLabel className="shad-form_label">Email</FormLabel>
+                )}
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
@@ -139,14 +152,20 @@ const SignupForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="shad-form_label">{t("Password")}</FormLabel>
+                {form.formState.errors.password && (
+                  <FormMessage >{form.formState.errors.password.message}</FormMessage>
+                )}
+                {!form.formState.errors.password && (
+                  <FormLabel className="shad-form_label">{t("Password")}</FormLabel>
+                )}
                 <FormControl>
                   <Input type="password" className="shad-input" {...field} />
                 </FormControl>
-                <FormMessage />
+
               </FormItem>
             )}
           />
+
 
           <Button type="submit" className="shad-button_primary">
             {isCreatingAccount || isSigningInUser || isUserLoading ? (
@@ -169,7 +188,7 @@ const SignupForm = () => {
         </form>
       </div>
     </Form>
-  ); 
+  );
 };
 
 export default SignupForm;

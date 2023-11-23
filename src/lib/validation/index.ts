@@ -5,7 +5,7 @@ import * as z from "zod";
 // ============================================================
 export const SignupValidation = z.object({
   name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
-  username: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+  username: z.string().min(2, { message: "O nome de usuário deve ter pelo menos 2 caracteres." }),
   email: z.string().email({ message: "Email inválido." }),
   password: z.string().min(8, { message: "A senha deve de ter pelo menos 8 caracteres." }),
 });
@@ -18,7 +18,7 @@ export const SigninValidation = z.object({
 export const ProfileValidation = z.object({
   file: z.custom<File[]>(),
   name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
-  username: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+  username: z.string().min(2, { message: "O nome de usuário deve ter pelo menos 2 caracteres." }),
   email: z.string().email({ message: "Email inválido." }),
   bio: z.string(),
 });

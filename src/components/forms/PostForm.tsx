@@ -89,15 +89,15 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="caption"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label" htmlFor={"Textarea"}>{t("Caption")}</FormLabel>
+              <FormLabel className="shad-form_label lg:text-base text-xs" htmlFor={"Textarea"}>{t("Caption")}</FormLabel>
               <FormControl>
                 <Textarea
-                  className="shad-textarea custom-scrollbar"
+                  className="shad-textarea custom-scrollbar lg:text-base text-xs"
                   id={"Textarea"}
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="shad-form_message" />
+              <FormMessage className="shad-form_message lg:text-base text-xs" />
             </FormItem>
           )}
         />
@@ -107,7 +107,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="file"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label" htmlFor={"file"}>{t("Add Photos")}</FormLabel>
+              <FormLabel className="shad-form_label lg:text-base text-xs" htmlFor={"file"}>{t("Add Photos")}</FormLabel>
               <FormControl>
                 <FileUploader
                   fieldChange={field.onChange}
@@ -115,7 +115,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
                   id="file"
                 />
               </FormControl>
-              <FormMessage className="shad-form_message" />
+              <FormMessage className="shad-form_message lg:text-base text-xs" />
             </FormItem>
           )}
         />
@@ -125,11 +125,11 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="location"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label" htmlFor={"location"}>{t("Add Location")}</FormLabel>
+              <FormLabel className="shad-form_label lg:text-base text-xs" htmlFor={"location"}>{t("Add Location")}</FormLabel>
               <FormControl>
-                <Input type="text" id={"location"} className="shad-input" maxLength={15} {...field} />
+                <Input type="text" id={"location"} className="shad-input lg:text-base text-xs" maxLength={15} {...field} />
               </FormControl>
-              <FormMessage className="shad-form_message" />
+              <FormMessage className="shad-form_message lg:text-base text-xs" />
             </FormItem>
           )}
         />
@@ -139,33 +139,33 @@ const PostForm = ({ post, action }: PostFormProps) => {
           name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="shad-form_label" htmlFor={"tags"}>
+              <FormLabel className="shad-form_label lg:text-base text-xs" htmlFor={"tags"}>
                 {t("Add Tags (separated by comma ' , ')")}
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder={t("Art, Expression, Learn")}
                   type="text"
-                  className="shad-input"
+                  className="shad-input lg:text-base text-xs"
                   id={"tags"}
                   {...field}
                 />
               </FormControl>
-              <FormMessage className="shad-form_message" />
+              <FormMessage className="shad-form_message lg:text-base text-xs" />
             </FormItem>
           )}
         />
 
-        <div className="flex gap-4 items-center justify-end">
+        <div className="flex gap-4 items-center justify-end ">
           <Button
             type="button"
-            className="shad-button_dark_4"
+            className="shad-button_dark_4 lg:text-base text-xs"
             onClick={() => navigate(-1)}>
             {t("Cancel")}
           </Button>
           <Button
             type="submit"
-            className="shad-button_primary whitespace-nowrap"
+            className="shad-button_primary whitespace-nowrap lg:text-base text-xs"
             disabled={isLoadingCreate || isLoadingUpdate}>
             {(isLoadingCreate || isLoadingUpdate) && <Loader />}
             {t("Create Post")}

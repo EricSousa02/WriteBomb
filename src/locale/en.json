@@ -60,6 +60,7 @@
         "Just now":"Just now",
         "create":"create",       
         "Name must be at least 2 characters.":"Name must be at least 2 characters.",
+        "Username must be at least 2 characters.":"Username must be at least 2 characters.",
         "Password must be at least 8 characters.":"Password must be at least 8 characters.",
         "Minimum 5 characters.":"Minimum 5 characters.",
         "Maximum 2,200 caracters":"Maximum 2,200 caracters",

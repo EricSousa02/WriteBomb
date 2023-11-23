@@ -31,7 +31,6 @@ import { useState, useEffect } from "react";
 
 interface Comment {
   $id: string;
-  // outras propriedades do comentário, se houver
 }
 
 
@@ -45,7 +44,7 @@ const Comments = () => {
   const { mutate: addComment, isLoading: isAddingComment } = useAddComment();
   const { mutate: deleteComment, isLoading: isDeletingComment } = useDeleteComment();
 
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [comments_length, setComments_length] = useState((post?.comments || []).map((comment: { users: { $id: any; }; }) => comment.users.$id).length);
 
   const form = useForm<z.infer<typeof CommentValidation>>({
@@ -67,24 +66,45 @@ const Comments = () => {
       console.error(`Comentário com ID ${commentId} não encontrado no post.`);
     }
   };
-  
-  
+
+
 
 
   const handleSendComment = async (value: z.infer<typeof CommentValidation>) => {
-    if (post) {
+    if (post && !isAddingComment) {
       setComments_length(comments_length + 1);
+
       const commentData = {
         postId: post.$id,
         userId: user.id,
         message: value.message,
       };
+
       form.reset();
       form.setValue("message", '');
+
+      // Adiciona temporariamente o novo comentário localmente com nome e imageUrl
+      setComments((prevComments) => [
+        ...prevComments,
+        {
+          $id: 'temp-id',
+          postId: post.$id,
+          userId: user.id,
+          message: value.message,
+          users: { $id: user.id, name: user.name, username:user.username, imageUrl: user.imageUrl },
+        },
+      ]);
+
+      // Adiciona o comentário remotamente
       addComment(commentData);
     }
   };
-  
+
+
+
+
+
+
 
   const handleDeletePost = () => {
     deletePost({ postId: id, imageId: post?.imageId });
@@ -115,7 +135,7 @@ const Comments = () => {
 
   return (
     <div className="flex flex-1">
-      <div className="post_details-container">
+      <div className="comment_details-container">
         <div className="hidden md:flex max-w-5xl w-full">
           <div className="flex gap-2 w-full max-w-5xl">
             <img
@@ -147,14 +167,14 @@ const Comments = () => {
           <Loader />
         ) : (
           <>
-            <div className="post_details-card">
+            <div className="comment_details-card">
               <img
                 src={post?.imageUrl}
                 alt="creator"
-                className="post_details-img"
+                className="comment_details-img"
               />
 
-              <div className="post_details-info">
+              <div className="comment_details-info">
                 <div className="flex-between w-full">
                   <Link
                     to={`/profile/${post?.creator.$id}`}
@@ -243,41 +263,42 @@ const Comments = () => {
           <Loader />
         ) : (
           <div className="w-full max-w-5xl">
-            <div className="post_details-card ">
-              <div className="post_details-info">
+            <div className="comment_details-card ">
+              <div className="comment_details-info">
                 {comments && comments.length > 0 ? (
                   comments.map((comment: any, index: number) => (
                     <div
-                      className="flex flex-col flex-1 w-full overflow-auto small-medium lg:base-regular custom-scrollbar"
-                      key={`${comment.id}-${index}`}>
-                      <div
-                        className={`flex flex-col ${user.id === comment?.users.$id
-                            ? "bg-dark-5"
-                            : "bg-dark-4"
-                          } rounded-lg p-2 mb-1 lg:overflow-auto custom-scrollbar`}>
-                        <div className="flex justify-between">
-                          <div className="flex items-center mb-3">
-                            <Link
-                              to={`/profile/${comment.users.$id}`}
-                              className={`cursor-pointer`}>
+                      key={index}
+                      className={`flex flex-col min-w-[200px]  ${user.id === comment?.users?.$id ? "bg-dark-5" : "bg-dark-4"
+                        } rounded-lg px-2 pt-2`}
+                    >
+                      <div className="flex justify-between items-center mb-3">
+                        {comment?.users && (
+                          <div className="flex items-center mb-1">
+                            <Link to={`/profile/${comment.users.$id}`} className="cursor-pointer ">
                               <img
-                                src={comment.users.imageUrl}
+                                src={comment.users.imageUrl || "/default-user-image.jpg"}
                                 alt={comment.users.name}
-                                className="w-8 h-8 rounded-full mr-2"
+                                className="w-10 h-10 rounded-full mr-2"
                               />
                             </Link>
-
-                            <span className="text-white font-bold">
-                              {comment.users.name}
-                            </span>
+                            <div className="flex flex-col">
+                              <span className="text-white font-bold break-all lg:text-base text-sm">
+                                {comment.users.name}
+                              </span>
+                              <span className="text-gray-400 text-xs">@{comment.users.username}</span>
+                            </div>
                           </div>
+                        )}
 
+
+                        {user.id === comment?.users?.$id && comment.$id !== 'temp-id' && (
                           <Button
-                            onClick={() => handleDeleteComment(comment.$id)}
+                            onClick={() => handleDeleteComment(comment?.$id)}
                             variant="ghost"
-                            className={`ost_details-delete_btn ${user.id !== comment?.users.$id && "hidden"
-                              }`}
-                            disabled={isDeletingComment}>
+                            className="ost_details-delete_btn"
+                            disabled={isDeletingComment}
+                          >
                             {isDeletingComment ? (
                               <Loader />
                             ) : (
@@ -289,17 +310,18 @@ const Comments = () => {
                               />
                             )}
                           </Button>
-                        </div>
+                        )}
+                      </div>
 
-                        <div className="mb-3">
-                          <p className="text-white">{comment.message}</p>
-                        </div>
+                      <div className="mb-3">
+                        <p className="text-white break-all lg:text-base text-xs">{comment?.message}</p>
                       </div>
                     </div>
                   ))
                 ) : (
                   <p className="text-white">{t("No comments yet.")}</p>
                 )}
+
 
                 <hr className="border w-full border-dark-4/80" />
 
@@ -313,14 +335,14 @@ const Comments = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel
-                            className="shad-form_label custom-scrollbar"
+                            className="shad-form_label custom-scrollbar lg:text-base text-xs"
                             htmlFor="message">
                             {t("Add comment")}
                           </FormLabel>
                           <FormControl>
                             <Textarea
                               id="message"
-                              className="shad-input custom-scrollbar"
+                              className="shad-input custom-scrollbar lg:text-base text-xs"
                               {...field}
                             />
                           </FormControl>
@@ -332,7 +354,7 @@ const Comments = () => {
                     <div className="flex gap-4 items-center justify-end">
                       <Button
                         type="submit"
-                        className="shad-button_primary whitespace-nowrap"
+                        className="shad-button_primary whitespace-nowrap lg:text-base text-xs"
                         disabled={isAddingComment}>
                         {isAddingComment ? t("Loading") : t("Create Comment")}
                       </Button>
