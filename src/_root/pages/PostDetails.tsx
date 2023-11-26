@@ -9,11 +9,14 @@ import {
 } from "@/lib/react-query/queries";
 import { multiFormatDateString } from "@/lib/utils";
 import { useUserContext } from "@/context/AuthContext";
+import { useState } from "react";
 
 const PostDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user, t } = useUserContext();
+
+  const [imgSize, setImgSize] = useState("object-contain")
 
   const { data: post, isLoading } = useGetPostById(id);
   const { data: userPosts, isLoading: isUserPostLoading } = useGetUserPosts(
@@ -55,7 +58,8 @@ const PostDetails = () => {
           <img
             src={post?.imageUrl}
             alt="creator"
-            className="post_details-img"
+            className={`post_details-img ${imgSize} cursor-pointer`}
+            onClick={() => {imgSize === "object-contain" ? setImgSize("object-fill") : setImgSize("object-contain")}}
           />
 
           <div className="post_details-info">

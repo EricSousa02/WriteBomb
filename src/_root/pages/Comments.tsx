@@ -39,6 +39,8 @@ const Comments = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [imgSize, setImgSize] = useState("object-contain")
+
   const { data: post, isLoading } = useGetPostById(id);
   const { mutate: deletePost } = useDeletePost();
   const { mutate: addComment, isLoading: isAddingComment } = useAddComment();
@@ -171,7 +173,8 @@ const Comments = () => {
               <img
                 src={post?.imageUrl}
                 alt="creator"
-                className="comment_details-img"
+                className={`comment_details-img ${imgSize} cursor-pointer`}
+                onClick={() => {imgSize === "object-contain" ? setImgSize("object-fill") : setImgSize("object-contain")}}
               />
 
               <div className="comment_details-info">

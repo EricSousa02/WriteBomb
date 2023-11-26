@@ -48,7 +48,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background: url("../public/assets/icons/filter.svg") 96% / 15% no-repeat
+  background: url("../assets/icons/filter.svg") 96% / 15% no-repeat
     #101012;
 }
 
@@ -209,7 +209,7 @@
   }
 
   .post_details-img {
-    @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px]  xl:rounded-l-[24px] xl:rounded-tr-none object-contain p-5 bg-dark-1;
+    @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px]  xl:rounded-l-[24px] xl:rounded-tr-none  p-5 bg-dark-1;
   }
 
   .post_details-info {
@@ -230,7 +230,7 @@
   }
 
   .comment_details-img {
-    @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px]  xl:rounded-l-[24px] xl:rounded-tr-none object-contain p-5 bg-dark-1;
+    @apply h-80 lg:h-[480px] xl:w-[48%] rounded-t-[30px]  xl:rounded-l-[24px] xl:rounded-tr-none p-5 bg-dark-1;
   }
 
   .comment_details-info {
