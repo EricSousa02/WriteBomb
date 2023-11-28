@@ -61,9 +61,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const checkAuthUser = async (): Promise<boolean> => {
-    setIsLoading(true);
-
+    
     if (isLoading === false) {
+      setIsLoading(true);
 
       try {
         const currentAccount = await getCurrentUser();
@@ -79,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           });
 
           setIsAuthenticated(true);
-          localStorage.setItem("Authenticated", JSON.stringify(true));
+          localStorage.setItem("isAuthenticated", JSON.stringify(true));
 
           return true;
         }
@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const cookieFallback = localStorage.getItem("cookieFallback");
-    const storedAuthStatus = localStorage.getItem("Authenticated"); // Verificando no localStorage
+    const storedAuthStatus = localStorage.getItem("isAuthenticated"); // Verificando no localStorage
     if (
       cookieFallback === "[]" ||
       cookieFallback === null ||
