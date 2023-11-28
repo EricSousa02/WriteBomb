@@ -24,7 +24,6 @@ const Topbar = () => {
             width={50}
             height={50}
           />
-
           <h2 className="font-bold tracking-wider">Write<span className="text-primary-500">Bomb</span></h2>
         </Link>
 
