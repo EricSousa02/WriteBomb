@@ -19,13 +19,13 @@ const INITIAL_STATE = {
   user: INITIAL_USER,
   isLoading: false,
   isAuthenticated: false,
-  setUser: () => {},
-  setIsAuthenticated: () => {},
+  setUser: () => { },
+  setIsAuthenticated: () => { },
   checkAuthUser: async () => false as boolean,
   t: {} as TFunction, // Adicione uma função de tradução padrão
-  changeLanguage: (_language: string) => {}, // Adicione uma função de mudança de idioma padrão
+  changeLanguage: (_language: string) => { }, // Adicione uma função de mudança de idioma padrão
   currentLanguage: "en", // Defina um idioma padrão
-  handleChangeLanguage: () => {}, // Adicione uma função de mudança de idioma padrão
+  handleChangeLanguage: () => { }, // Adicione uma função de mudança de idioma padrão
 
 };
 
@@ -50,9 +50,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<IUser>(INITIAL_USER);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  
-  const { t, i18n: {changeLanguage, language} } = useTranslation();
-  const [currentLanguage, setCurrentLanguage] = useState(language)
+
+  const { t, i18n: { changeLanguage, language } } = useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState(language);
 
   const handleChangeLanguage = () => {
     const newLanguage = currentLanguage === "en" ? "pt" : "en";
@@ -60,35 +60,47 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     changeLanguage(newLanguage);
   }
 
-  const checkAuthUser = async () => {
+  const checkAuthUser = async (): Promise<boolean> => {
     setIsLoading(true);
-    try {
-      const currentAccount = await getCurrentUser();
-      if (currentAccount) {
-        setUser({
-          id: currentAccount.$id,
-          name: currentAccount.name,
-          username: currentAccount.username,
-          email: currentAccount.email,
-          imageUrl: currentAccount.imageUrl,
-          bio: currentAccount.bio,
-        });
-        setIsAuthenticated(true);
 
-        return true;
+    if (isLoading === false) {
+
+      try {
+        const currentAccount = await getCurrentUser();
+
+        if (currentAccount) {
+          setUser({
+            id: currentAccount.$id,
+            name: currentAccount.name,
+            username: currentAccount.username,
+            email: currentAccount.email,
+            imageUrl: currentAccount.imageUrl,
+            bio: currentAccount.bio,
+          });
+
+          setIsAuthenticated(true);
+          localStorage.setItem("Authenticated", JSON.stringify(true));
+
+          return true;
+        }
+
+        return false;
+      } catch (error) {
+        console.error(error);
+        return false;
+      } finally {
+        setIsLoading(false);
       }
-
-      return false;
-    } catch (error) {
-      console.error(error);
-      return false;
-    } finally {
-      setIsLoading(false);
+    } else {
+      return false
     }
+
   };
+
 
   useEffect(() => {
     const cookieFallback = localStorage.getItem("cookieFallback");
+    const storedAuthStatus = localStorage.getItem("Authenticated"); // Verificando no localStorage
     if (
       cookieFallback === "[]" ||
       cookieFallback === null ||
@@ -97,7 +109,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       navigate("/sign-in");
     }
 
-    checkAuthUser();
+    if (storedAuthStatus && JSON.parse(storedAuthStatus)) {
+      setIsAuthenticated(true);
+    } else {
+      checkAuthUser();
+    }
   }, []);
 
   const value = {
@@ -107,10 +123,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isAuthenticated,
     setIsAuthenticated,
     checkAuthUser,
-    t, // Adicionando a função de tradução ao contexto
-    changeLanguage, // Adicionando a função de mudança de idioma ao contexto
-    currentLanguage, // Adicionando o estado do idioma atual ao contexto
-    handleChangeLanguage, // Adicionando a função de mudança de idioma ao contexto
+    t,
+    changeLanguage,
+    currentLanguage,
+    handleChangeLanguage,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

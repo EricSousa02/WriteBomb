@@ -76,7 +76,7 @@ export async function getAccount() {
 
     return currentAccount;
   } catch (error) {
-    console.log(error);
+    
   }
 }
 
@@ -105,13 +105,16 @@ export async function getCurrentUser() {
 // ============================== SIGN OUT
 export async function signOutAccount() {
   try {
+    localStorage.removeItem("isAuthenticated");
+
     const session = await account.deleteSession("current");
 
     return session;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
+
 
 // ============================================================
 // POSTS

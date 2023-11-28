@@ -33,7 +33,7 @@ const Topbar = () => {
             variant="ghost"
             className="shad-button_ghost"
             onClick={handleChangeLanguage}>
-            <img src="/assets/icons/language.svg" alt="logout" />
+            <img src="/assets/icons/language.svg" alt="language" />
           </Button>
           <Button
             variant="ghost"
