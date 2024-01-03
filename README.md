@@ -1,4 +1,4 @@
-# WriteBomb - Aplicativo de Rede Social
+# WriteBomb -- Aplicativo de Rede Social
 
 Bem-vindo ao WriteBomb, seu novo espaço para compartilhar ideias, histórias e momentos com a comunidade! Este projeto é uma rede social interativa onde os usuários podem criar, curtir, comentar e interagir de diversas maneiras.
 
