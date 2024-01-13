@@ -29,7 +29,7 @@ const UserCard = ({ user }: UserCardProps) => {
         <p className="base-medium text-light-1 text-center line-clamp-1 truncate w-[160px]">
           {user.name}
         </p>
-        <p className="small-regular text-light-3 text-center line-clamp-1 truncate w-[150px]">
+        <p className="small-regular text-light-3 text-center line-clamp-1 truncate w-[160px]">
           @{user.username}
         </p>
       </div>
