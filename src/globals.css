@@ -10,7 +10,7 @@
 }
 
 /* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   @apply w-2;
 }
 
@@ -31,7 +31,7 @@
 
   *::-webkit-scrollbar {
     display: none; /* Adicionado para esconder a barra de rolagem no Webkit (Chrome, Edge, Safari) */
-    width: 2px;
+    /* width: 2px;
   }
 
   *::-webkit-scrollbar-track {
@@ -42,7 +42,7 @@
     border-radius: 16px;
     @apply bg-primary-500 border-2 border-primary-500;
   }
-}
+} */ 
 
 .select {
   -webkit-appearance: none;
