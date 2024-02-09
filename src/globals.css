@@ -4,10 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+/* * {
   scrollbar-width: auto;
   scrollbar-color: #f02d65 #1b1b1b;
-}
+} */
 
 /* Chrome, Edge, and Safari */
 /* *::-webkit-scrollbar {
